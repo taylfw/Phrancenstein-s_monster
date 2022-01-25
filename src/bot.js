@@ -1,9 +1,19 @@
 require("dotenv").config();
+const axios = require("axios");
+const giphy = require('giphy-api')()
 
-const { Client, Intents } = require("discord.js");
+const { Client, Intents, TextChannel } = require("discord.js");
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
+
+
+axios.get("https://api.kanye.rest/")
+    .then(response => {
+       console.log(response.data.quote);
+    })
+
+const PREFIX = "$"
 
 client.on("ready", () => {
   console.log(`${client.user.username}'s eyes are opening...`);
@@ -12,6 +22,26 @@ client.on("ready", () => {
 
 client.on("messageCreate", (messageCreate) => {
   console.log(`[${messageCreate.author.tag}]: ${messageCreate.content}`);
+
+  if (messageCreate.content.startsWith(PREFIX)){
+      const [CMD_NAME, ...args] = messageCreate.content
+      .trim()
+      .substring(PREFIX.length)
+      .split(/\s+/);
+      console.log(CMD_NAME)
+      console.log(args)
+
+      if (CMD_NAME === "yeezy"){
+        
+      axios.get("https://api.kanye.rest/")
+    .then(response => {
+      const answer = response.data.quote
+      messageCreate.reply(answer);
+    })
+        
+      }
+  }
+
   if (messageCreate.content === "hello") {
     messageCreate.reply("Guughhh...");
   }
