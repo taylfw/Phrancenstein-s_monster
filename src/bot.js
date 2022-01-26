@@ -7,11 +7,16 @@ const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
+function monsterVoice(str){
+  for( let i = 0; i < str.length; i++){
+    if(i % 2 === 0){
+      str[i].toUpperCase()
+    } else {
+      str[i].toLowerCase()
+    }
+  }
+}
 
-axios.get("https://api.kanye.rest/")
-    .then(response => {
-       console.log(response.data.quote);
-    })
 
 const PREFIX = "$"
 
@@ -35,8 +40,8 @@ client.on("messageCreate", (messageCreate) => {
         
       axios.get("https://api.kanye.rest/")
     .then(response => {
-      const answer = response.data.quote
-      messageCreate.reply(answer);
+      const answer = monsterVoice(response.data.quote)
+      messageCreate.reply(answer)
     })
         
       }
