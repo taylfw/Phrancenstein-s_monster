@@ -2,20 +2,26 @@ require("dotenv").config();
 const axios = require("axios");
 const giphy = require('giphy-api')()
 
-const { Client, Intents, TextChannel } = require("discord.js");
+const { Client, Intents, TextChannel, NewsChannel } = require("discord.js");
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
 function monsterVoice(str){
+  newStr = [];
   for( let i = 0; i < str.length; i++){
     if(i % 2 === 0){
-      str[i].toUpperCase()
+     
+     newStr.push(str[i].toUpperCase())
     } else {
-      str[i].toLowerCase()
+      
+      newStr.push(str[i].toLowerCase())
     }
   }
+  return newStr.join('')
 }
+
+console.log(monsterVoice("hello Frank"), "<----")
 
 
 const PREFIX = "$"
@@ -41,6 +47,7 @@ client.on("messageCreate", (messageCreate) => {
       axios.get("https://api.kanye.rest/")
     .then(response => {
       const answer = monsterVoice(response.data.quote)
+
       messageCreate.reply(answer)
     })
         
