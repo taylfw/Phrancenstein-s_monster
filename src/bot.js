@@ -21,8 +21,6 @@ function monsterVoice(str){
   return newStr.join('')
 }
 
-console.log(monsterVoice("hello Frank"), "<----")
-
 
 const PREFIX = "$"
 
@@ -50,8 +48,23 @@ client.on("messageCreate", (messageCreate) => {
 
       messageCreate.reply(answer)
     })
+  }
+
+  if (CMD_NAME === "define"){
         
-      }
+    axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${args[0]}`)
+  .then(response => {
+    const answer = response.data;
+    const meaningsArr = answer[0].meanings
+
+    messageCreate.reply(`${answer[0].origin} Definition: ${meaningsArr[0].definitions[0].definition}`)
+    
+  })
+}
+
+
+
+
   }
 
   if (messageCreate.content === "hello") {
