@@ -7,6 +7,8 @@ const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
+//This function takes strings and mAkEs ThEm lOoK LiKe tHiS. 
+
 function monsterVoice(str){
   newStr = [];
   for( let i = 0; i < str.length; i++){
@@ -32,6 +34,9 @@ client.on("ready", () => {
 client.on("messageCreate", (messageCreate) => {
   console.log(`[${messageCreate.author.tag}]: ${messageCreate.content}`);
 
+
+  //Response to commands ($yeezy and $define word)
+
   if (messageCreate.content.startsWith(PREFIX)){
       const [CMD_NAME, ...args] = messageCreate.content
       .trim()
@@ -56,14 +61,23 @@ client.on("messageCreate", (messageCreate) => {
   .then(response => {
     const answer = response.data;
     const meaningsArr = answer[0].meanings
+    const finalAnswer = meaningsArr[0].definitions[0].definition
 
-    messageCreate.reply(`${answer[0].origin} Definition: ${meaningsArr[0].definitions[0].definition}`)
+    messageCreate.reply(finalAnswer)
     
   })
 }
 
+if (CMD_NAME === "weather"){
+  axios.get(`api.openweathermap.org/data/2.5/weather?id=4160021&appid=b3eb673545cc3461126ed042c629a2e5`)
+    .then(response => {
+      const answer = response
+      console.log(answer);
+      // messageCreate.reply(answer)
+    })
+}
 
-
+//general responses to user messages.
 
   }
 
