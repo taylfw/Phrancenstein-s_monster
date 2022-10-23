@@ -24,7 +24,7 @@ function monsterVoice(str){
 }
 
 
-const PREFIX = "$"
+const PREFIX = "pm "
 
 client.on("ready", () => {
   console.log(`${client.user.username}'s eyes are opening...`);
@@ -32,10 +32,10 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (messageCreate) => {
-  console.log(`[${messageCreate.author.tag}]: ${messageCreate.content}`);
+  console.log(`[${messageCreate.author.tag}]: ${messageCreate}`);
 
 
-  //Response to commands ($yeezy and $define word)
+  //Response to commands (pm yeezy and pm define word)
 
   if (messageCreate.content.startsWith(PREFIX)){
       const [CMD_NAME, ...args] = messageCreate.content
@@ -75,23 +75,22 @@ if (CMD_NAME === "weather"){
       console.log(answer);
       // messageCreate.reply(answer)
     })
+  }
 }
 
 //general responses to user messages.
-
-  }
 
   if (messageCreate.content === "hello") {
     messageCreate.reply("Guughhh...");
   }
   if (
-    messageCreate.content === "fire" ||
-    messageCreate.content === "Fire" ||
-    messageCreate.content === "🔥"
+    messageCreate.content.includes("fire")  ||
+    messageCreate.content.includes("Fire") ||
+    messageCreate.content.includes("🔥")
   ) {
     messageCreate.reply("FIRE BAAAD!!!");
   }
-  if (messageCreate.content === "ritz") {
+  if (messageCreate.content.includes("ritz")) {
     messageCreate.reply(
       "https://i.pinimg.com/originals/13/c1/37/13c13777a5ee6d90dcb3495385d0d438.gif"
     );
