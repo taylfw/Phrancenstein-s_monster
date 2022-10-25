@@ -3,9 +3,9 @@ Discord Bot written in Node JS.
 
 ##Current Commands:
 
-$yeezy - will return a quote from Kanye Rest API
+pm yeezy - will return a quote from Kanye Rest API
 
-$define (word) - returns definition of a given word. 
+pm define (word) - returns definition of a given word. 
 
 ##Listens for:
 
@@ -17,6 +17,9 @@ $define (word) - returns definition of a given word.
 
 "ritz"
 
+"Frank"
+
+
 #working on:
 
-weather command. 
+Open Ai configuration
