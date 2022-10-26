@@ -3,9 +3,11 @@ Discord Bot written in Node JS.
 
 ##Current Commands:
 
-pm yeezy - will return a quote from Kanye Rest API
+<b>pm yeezy</b> - will return a quote from Kanye Rest API
 
-pm define (word) - returns definition of a given word. 
+<b>pm define</b> (word) - returns definition of a given word. 
+
+<b>"pm ai"</b> (message) - returns whatever it thinks is appropriate. 
 
 ##Listens for:
 
@@ -19,7 +21,4 @@ pm define (word) - returns definition of a given word.
 
 "Frank"
 
-
-I've recently added openai functionality.
-To interact with you'll need to start chat with <b>"pm ai"</b> 
 
