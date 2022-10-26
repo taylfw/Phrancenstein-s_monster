@@ -20,6 +20,6 @@ pm define (word) - returns definition of a given word.
 "Frank"
 
 
-#working on:
+I've recently added openai functionality.
+To interact with you'll need to start chat with <b>"pm ai"</b> 
 
-Open Ai configuration
