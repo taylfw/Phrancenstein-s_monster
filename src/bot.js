@@ -43,7 +43,7 @@ client.on("messageCreate", (messageCreate) => {
   console.log(`[${messageCreate.author.tag}]: ${messageCreate}`);
 
 
-  //Response to commands (pm yeezy and pm define word)
+  //This part is for all my api calls.
 
   if (messageCreate.content.startsWith(PREFIX)){
       const [CMD_NAME, ...args] = messageCreate.content
@@ -53,6 +53,7 @@ client.on("messageCreate", (messageCreate) => {
       console.log(CMD_NAME)
       console.log(args)
 
+      //kanye.rest api
       if (CMD_NAME === "yeezy"){
         
         axios.get("https://api.kanye.rest/")
@@ -63,6 +64,7 @@ client.on("messageCreate", (messageCreate) => {
       })
     }
 
+    //definition api
     if (CMD_NAME === "define"){
           
       axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${args[0]}`)
@@ -76,6 +78,7 @@ client.on("messageCreate", (messageCreate) => {
     })
   }
 
+  //openweather api (not working yet)
   if (CMD_NAME === "weather"){
     axios.get(`api.openweathermap.org/data/2.5/weather?id=4160021&appid=b3eb673545cc3461126ed042c629a2e5`)
       .then(response => {
@@ -85,13 +88,14 @@ client.on("messageCreate", (messageCreate) => {
       })
     }
 
+    //not an api, but just uplifting 😁
   if(CMD_NAME === "encourage"){
 
     messageCreate.reply("You're awesome, " + args[0])
 
   }
 
-    //Testing Open AI
+    //openai
     let prompt =`
     You: What time is it?
      `;
@@ -114,33 +118,6 @@ client.on("messageCreate", (messageCreate) => {
   }
 
 }
-
-//Testing Open AI
-// const configuration = new Configuration({
-//   apiKey: process.env.OPENAI_API_KEY,
-// });
-
-// const openai = new OpenAIApi(configuration);
-
-// client.on("messageCreate", function(messageCreate){
-//   if (messageCreate.content.startsWith(AIPREFIX)){
-//     const [CMD_NAME, ...args] = messageCreate.content
-//     .trim()
-//     .substring(PREFIX.length)
-//     .split(/\s+/);
-//     console.log(CMD_NAME)
-//     console.log(args.join(' '))
-
-//     if(CMD_NAME === '-ai'){
-//       messageCreate.reply(`guhhhh.... AAAHHHH!`)
-//     }
-   
-  
-//   }
-  
-//  })
-
-
 
 
 //general responses to user messages.
