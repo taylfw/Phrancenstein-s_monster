@@ -96,9 +96,7 @@ client.on("messageCreate", (messageCreate) => {
   }
 
     //openai
-    let prompt =`
-    You: What time is it?
-     `;
+    let prompt =``;
  
   if(CMD_NAME === 'ai'){
     prompt += `You: ${messageCreate.content}\n`;
@@ -107,8 +105,8 @@ client.on("messageCreate", (messageCreate) => {
             model: "text-davinci-002",
             prompt: prompt,
             max_tokens: 256,
-            temperature: 1,
-            top_p: 0.3,
+            temperature: 0.9,
+            top_p: 0.8,
             presence_penalty: 0,
             frequency_penalty: 0.5,
           });
