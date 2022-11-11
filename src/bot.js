@@ -112,7 +112,8 @@ client.on("messageCreate", (messageCreate) => {
             presence_penalty: 0,
             frequency_penalty: 0.5,
           });
-        messageCreate.reply(`\`\`\`${gptResponse.data.choices[0].text.substring(5)}\`\`\``);
+          // console.log(gptResponse.data.choices[0].text.substring(0))
+        messageCreate.reply(`\`\`\`${gptResponse.data.choices[0].text.substring(0)}\`\`\``);
         // prompt += `${gptResponse.data.choices[0].text}\n`;
     })();
   }
