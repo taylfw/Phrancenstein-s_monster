@@ -9,6 +9,7 @@ const client = new Client({
 });
 
 const configuration = new Configuration({
+  organization: 'org-KEZTOYi19c4LyIlkUTrnJEXw',
   apiKey: process.env.OPENAI_API_KEY,
 });
 
@@ -101,6 +102,7 @@ client.on("messageCreate", (messageCreate) => {
   if(CMD_NAME === 'ai'){
     prompt += `You: ${messageCreate.content}\n`;
   (async () => {
+        
         const gptResponse = await openai.createCompletion({
             model: "text-davinci-002",
             prompt: prompt,
@@ -110,8 +112,23 @@ client.on("messageCreate", (messageCreate) => {
             presence_penalty: 0,
             frequency_penalty: 0.5,
           });
-        messageCreate.reply(`${gptResponse.data.choices[0].text.substring(5)}`);
-        prompt += `${gptResponse.data.choices[0].text}\n`;
+        messageCreate.reply(`\`\`\`${gptResponse.data.choices[0].text.substring(5)}\`\`\``);
+        // prompt += `${gptResponse.data.choices[0].text}\n`;
+    })();
+  }
+
+  //adding dall-e functionality
+  if(CMD_NAME === 'draw'){
+    prompt += `${messageCreate.content}\n`;
+    (async () =>{
+      
+      console.log(openai)
+      const response = await openai.createImage({
+        prompt: "",
+        n: 1,
+        size: "1024x1024",
+      });
+      image_url = response.data.data[0].url;
     })();
   }
 
