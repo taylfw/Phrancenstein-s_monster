@@ -156,12 +156,7 @@ client.on("messageCreate", (messageCreate) => {
   if (messageCreate.content === "wish me luck") {
     messageCreate.reply("GoOd lUcK...");
   }
-  if (
-    messageCreate.content.includes("Frank")
   
-  ) {
-    messageCreate.reply("You mentioned this 'Frank'. That is my maker. But, please, continue.");
-  }
 });
 
 client.login(process.env.DJS_BOT_TOKEN);
